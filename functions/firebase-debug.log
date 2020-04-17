@@ -1,0 +1,183 @@
+[debug] [2020-04-17T19:29:59.688Z] ----------------------------------------------------------------------
+[debug] [2020-04-17T19:29:59.690Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-04-17T19:29:59.690Z] CLI Version:   8.1.0
+[debug] [2020-04-17T19:29:59.690Z] Platform:      win32
+[debug] [2020-04-17T19:29:59.690Z] Node Version:  v10.16.2
+[debug] [2020-04-17T19:29:59.691Z] Time:          Fri Apr 17 2020 12:29:59 GMT-0700 (Pacific Daylight Time)
+[debug] [2020-04-17T19:29:59.691Z] ----------------------------------------------------------------------
+[debug] [2020-04-17T19:29:59.691Z] 
+[debug] [2020-04-17T19:29:59.699Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-17T19:29:59.700Z] > authorizing via signed-in user
+[debug] [2020-04-17T19:29:59.700Z] [iam] checking project bboxlabeler for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-17T19:29:59.703Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bboxlabeler:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-17T19:29:59.850Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Apr 2020 19:29:57 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=48","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-17T19:29:59.851Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/bboxlabeler/serviceAccounts/bboxlabeler@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-17T19:30:00.157Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Apr 2020 19:29:58 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'bboxlabeler'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script.
+[debug] [2020-04-17T19:30:10.465Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2020-04-17T19:30:10.587Z] Error: ENOENT: no such file or directory, stat 'functions\package.json'
+    at Object.statSync (fs.js:855:3)
+    at Object.load (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cjson\index.js:200:12)
+    at getRuntimeChoice (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\parseRuntimeAndValidateSDK.js:55:26)
+    at module.exports (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:26:29)
+    at _chain (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:22:40)
+    at C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:63:16
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-04-17T19:30:27.483Z] ----------------------------------------------------------------------
+[debug] [2020-04-17T19:30:27.485Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-04-17T19:30:27.486Z] CLI Version:   8.1.0
+[debug] [2020-04-17T19:30:27.486Z] Platform:      win32
+[debug] [2020-04-17T19:30:27.486Z] Node Version:  v10.16.2
+[debug] [2020-04-17T19:30:27.487Z] Time:          Fri Apr 17 2020 12:30:27 GMT-0700 (Pacific Daylight Time)
+[debug] [2020-04-17T19:30:27.487Z] ----------------------------------------------------------------------
+[debug] [2020-04-17T19:30:27.487Z] 
+[debug] [2020-04-17T19:30:27.495Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-17T19:30:27.495Z] > authorizing via signed-in user
+[debug] [2020-04-17T19:30:27.495Z] [iam] checking project bboxlabeler for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-17T19:30:27.498Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bboxlabeler:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-17T19:30:27.642Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Apr 2020 19:30:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=48","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-17T19:30:27.643Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/bboxlabeler/serviceAccounts/bboxlabeler@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-17T19:30:27.970Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Apr 2020 19:30:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'bboxlabeler'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script.
+[debug] [2020-04-17T19:30:38.049Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2020-04-17T19:30:38.143Z] Error: ENOENT: no such file or directory, stat 'functions\package.json'
+    at Object.statSync (fs.js:855:3)
+    at Object.load (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cjson\index.js:200:12)
+    at getRuntimeChoice (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\parseRuntimeAndValidateSDK.js:55:26)
+    at module.exports (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:26:29)
+    at _chain (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:22:40)
+    at C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:63:16
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-04-17T19:32:16.164Z] ----------------------------------------------------------------------
+[debug] [2020-04-17T19:32:16.166Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-04-17T19:32:16.167Z] CLI Version:   8.1.0
+[debug] [2020-04-17T19:32:16.167Z] Platform:      win32
+[debug] [2020-04-17T19:32:16.167Z] Node Version:  v10.16.2
+[debug] [2020-04-17T19:32:16.168Z] Time:          Fri Apr 17 2020 12:32:16 GMT-0700 (Pacific Daylight Time)
+[debug] [2020-04-17T19:32:16.168Z] ----------------------------------------------------------------------
+[debug] [2020-04-17T19:32:16.168Z] 
+[debug] [2020-04-17T19:32:16.176Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-17T19:32:16.177Z] > authorizing via signed-in user
+[debug] [2020-04-17T19:32:16.177Z] [iam] checking project bboxlabeler for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-17T19:32:16.180Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bboxlabeler:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-17T19:32:16.366Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Apr 2020 19:32:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=58","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-17T19:32:16.367Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/bboxlabeler/serviceAccounts/bboxlabeler@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-17T19:32:16.664Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Apr 2020 19:32:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'bboxlabeler'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script.
+[debug] [2020-04-17T19:32:30.669Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2020-04-17T19:32:30.794Z] Error: ENOENT: no such file or directory, stat 'functions\package.json'
+    at Object.statSync (fs.js:855:3)
+    at Object.load (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cjson\index.js:200:12)
+    at getRuntimeChoice (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\parseRuntimeAndValidateSDK.js:55:26)
+    at module.exports (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:26:29)
+    at _chain (C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:22:40)
+    at C:\Users\zjjc1\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:63:16
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -1,8 +1,12 @@
 import * as functions from 'firebase-functions';
+import express = require('express')
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+const app: express.Application = express();
+
+
+//all routes used
+import parse from './handlers/parse'
+
+app.use('/', parse)
+
+exports.api = functions.https.onRequest(app)
