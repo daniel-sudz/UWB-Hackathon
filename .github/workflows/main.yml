@@ -29,11 +29,11 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-  #  - if: matrix.os = 'macos-latest'
+    - if: matrix.os = 'macos-latest'
     - name: We are in macos
       run: echo Hello from macos!
 
- #   - if: matrix.os = 'linux-latest'
+    - if: matrix.os = 'ubuntu-latest'
     - name: We are in linux
       run: |
         echo hello from linux
