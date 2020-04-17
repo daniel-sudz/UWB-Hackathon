@@ -1,9 +1,9 @@
 npm install
 
 # Configure token for access to github cert repo
-git config --global user.email $git_email
-git config --global user.name $git_username
-git config --global user.password $git_password
+git config --local user.email $git_email
+git config --local user.name $git_username
+git config --local user.password $git_password
 
 git remote set-url origin https://github.com/$git_username/bbox-mobile
 git fetch -a
