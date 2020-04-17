@@ -6,6 +6,7 @@ git config --global user.name $git_username
 git config --global user.password $git_password
 
 git remote set-url origin https://github.com/{$git_username}/bbox-mobile
+git checkout master
 touch .test 
 git add .
 git commit -m "test"
