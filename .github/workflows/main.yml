@@ -19,10 +19,9 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     strategy:  
-      fail-fast:
-        false
       matrix: 
         os: ['ubuntu-latest', 'macos-latest']
+      fail-fast: false
     runs-on: ${{matrix.os}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
