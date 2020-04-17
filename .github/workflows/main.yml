@@ -36,5 +36,5 @@ jobs:
     - if: matrix.os == 'ubuntu-latest'
       name: We are in linux
       run: | 
-      chmod +x .github/workflows/install_linux.sh
-      sudo .github/workflows/install_linux.sh
+        chmod +x .github/workflows/install_linux.sh
+        sudo .github/workflows/install_linux.sh
