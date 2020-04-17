@@ -1,6 +1,6 @@
 ## Data Format That I send to your server to get parsed for training
 
-```json
+```
 {
   image1: {
     base64: 'base64stringforimage', 
