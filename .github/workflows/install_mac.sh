@@ -10,5 +10,6 @@ pod install
 brew install fastlane
 brew upgrade fastlane
 bundle install
+bundle exec fastlane keychain
 bundle exec fastlane beta
 #npx react-native run-ios

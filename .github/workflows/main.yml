@@ -33,10 +33,10 @@ jobs:
       name: We are in macos
       run: |
         sudo chmod +x .github/workflows/install_mac.sh
-        sudo .github/workflows/install_mac.sh
+        .github/workflows/install_mac.sh
 
     - if: matrix.os == 'ubuntu-latest'
       name: We are in linux
       run: | 
         sudo chmod +x .github/workflows/install_linux.sh
-        sudo .github/workflows/install_linux.sh
+        .github/workflows/install_linux.sh
