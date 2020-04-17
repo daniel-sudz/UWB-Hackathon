@@ -4,6 +4,11 @@ npm install
 #brew update
 #brew install watchman
 sudo gem install cocoapods
-cd ios && pod install && cd ...
+cd ios
+pod install
 
-npx react-native run-ios
+brew install fastlane
+brew upgrade fastlane
+bundle install
+bundle exec fastlane beta
+#npx react-native run-ios

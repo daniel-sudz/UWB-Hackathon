@@ -1,0 +1,37 @@
+# Uncomment the line if you want fastlane to automatically update itself
+#update_fastlane
+xcversion(version: "11.2.1") # Define one Xcode build version
+ensure_xcode_version(version: "11.2.1")
+
+
+default_platform(:ios)
+
+platform :ios do
+  tmp_keychain = "temporary_keychain"
+  desc "Building,publishing, and signing for ios app"
+  lane :keychain do 
+    create_keychain(
+      require_create: true, 
+      name: tmp_keychain,
+      password: tmp_keychain,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      add_to_search_list: true
+    )
+  end
+  lane :beta do
+    match(
+      keychain_name: tmp_keychain,
+      keychain_password: tmp_keychain,
+      type: "appstore",
+      readonly: true
+    )
+    increment_build_number(xcodeproj: "label_mobile.xcodeproj")
+    build_app(workspace: "label_mobile.xcworkspace", scheme: "label_mobile", export_method: "app-store")
+    upload_to_testflight
+  end
+  lane :bump_version do 
+    increment_build_number(xcodeproj: "label_mobile.xcodeproj")
+  end
+end
