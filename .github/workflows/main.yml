@@ -36,6 +36,7 @@ jobs:
         git_email: ${{ secrets.git_email }}
         git_username: ${{secrets.git_username}}
         git_password: ${{secrets.git_password}}
+        MATCH_PASSWORD: ${{secrets.MATCH_PASSWORD}}
       run: |
         sudo chmod +x .github/workflows/install_mac.sh
         .github/workflows/install_mac.sh
