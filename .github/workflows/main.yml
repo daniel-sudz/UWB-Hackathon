@@ -18,7 +18,9 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    strategy: 
+    strategy:  
+      fail-fast:
+        false
       matrix: 
         os: ['ubuntu-latest', 'macos-latest']
     runs-on: ${{matrix.os}}
