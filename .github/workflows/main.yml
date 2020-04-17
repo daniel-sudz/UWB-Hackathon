@@ -30,11 +30,11 @@ jobs:
 
     # Runs a single command using the runners shell
     - if: matrix.os = 'macos-latest'
-    - name: We are in macos
+      name: We are in macos
       run: echo Hello from macos!
 
     - if: matrix.os = 'ubuntu-latest'
-    - name: We are in linux
+      name: We are in linux
       run: |
         echo hello from linux
         echo hello from linux
