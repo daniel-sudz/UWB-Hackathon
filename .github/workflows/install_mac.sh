@@ -1,19 +1,19 @@
 npm install
 
 # Configure token for access to github cert repo
-git config --local user.email $git_email
-git config --local user.name $git_username
-git config --local user.password $git_password
+#git config --global user.email $git_email
+#git config --global user.name $git_username
+#git config --global user.password $git_password
 
-git remote set-url origin https://github.com/$git_username/bbox-mobile
-git fetch -a
-git checkout master
-touch .test 
-git add .
-git commit -m "test"
-git push origin master
+#git remote set-url origin https://github.com/$git_username/bbox-mobile
+#git fetch -a
+#git checkout master
+#touch .test 
+#git add .
+#git commit -m "test"
+#git push origin master
 
-git clone https://github.com/daniel-sudz/certificates
+#git clone https://github.com/daniel-sudz/certificates
 
 # Build dependencies
 #brew update
@@ -21,6 +21,10 @@ git clone https://github.com/daniel-sudz/certificates
 sudo gem install cocoapods
 cd ios
 pod install
+
+cat ios/fastlane/Matchfile
+echo $fastlane_git >> ios/fastlane/Matchfile
+cat ios/fastlane/Matchfile
 
 brew install fastlane
 brew upgrade fastlane
