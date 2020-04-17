@@ -3,13 +3,13 @@ npm install
 # Build dependencies
 #brew update
 #brew install watchman
-sudo gem install cocoapods
+sudo gem install cocoapods --verbose
 cd ios
-pod install
+pod install --verbose
 
-brew install fastlane
-brew upgrade fastlane
+brew install fastlane --verbose
+brew upgrade fastlane --verbose
 bundle install
-bundle exec fastlane keychain
-bundle exec fastlane beta
+bundle exec fastlane keychain --verbose
+bundle exec fastlane beta --verbose
 #npx react-native run-ios
