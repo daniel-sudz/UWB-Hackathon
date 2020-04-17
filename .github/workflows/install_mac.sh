@@ -18,13 +18,10 @@ npm install
 # Build dependencies
 #brew update
 #brew install watchman
-sudo gem install cocoapods
-cd ios
-pod install
+#sudo gem install cocoapods
+#cd ios
+#pod install
 
-cat ios/fastlane/Matchfile
-echo $fastlane_git >> ios/fastlane/Matchfile
-cat ios/fastlane/Matchfile
 
 brew install fastlane
 brew upgrade fastlane

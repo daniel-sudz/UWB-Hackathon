@@ -37,7 +37,7 @@ jobs:
         git_username: ${{secrets.git_username}}
         git_password: ${{secrets.git_password}}
         MATCH_PASSWORD: ${{secrets.MATCH_PASSWORD}}
-        fastlane_git: ${{secrets.fastlane_git}}
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{secrets.MATCH_GIT_BASIC_AUTHORIZATION}}
       run: |
         sudo chmod +x .github/workflows/install_mac.sh
         .github/workflows/install_mac.sh
