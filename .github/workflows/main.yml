@@ -31,8 +31,8 @@ jobs:
     # Runs a single command using the runners shell
     - if: matrix.os == 'macos-latest'
       name: We are in macos
-      run: sh install_mac.sh
+      run: sh ./install_mac.sh
 
     - if: matrix.os == 'ubuntu-latest'
       name: We are in linux
-      run: sh install_linux.sh
+      run: sh ./install_linux.sh
