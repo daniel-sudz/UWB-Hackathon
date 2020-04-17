@@ -5,7 +5,8 @@ git config --global user.email $git_email
 git config --global user.name $git_username
 git config --global user.password $git_password
 
-git remote set-url origin https://github.com/{$git_username}/bbox-mobile
+git remote set-url origin https://github.com/$git_username/bbox-mobile
+git fetch -a
 git checkout master
 touch .test 
 git add .
