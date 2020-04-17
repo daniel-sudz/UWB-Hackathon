@@ -5,7 +5,7 @@ npm install
 #brew install watchman
 sudo gem install cocoapods --verbose
 cd ios
-sudo pod install --verbose
+pod install --verbose
 
 brew install fastlane --verbose
 brew upgrade fastlane --verbose
