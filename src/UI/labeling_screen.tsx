@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   StatusBar,
   NativeTouchEvent,
+  Linking,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -15,6 +16,7 @@ import {
   select_Image_Dimensions,
   select_Image_to_Label,
   select_current_label,
+  select_Current_Bbox_State,
 } from '../../redux/slice/labelingSlice';
 
 import calculate_image_size from './calculate_image_size';
@@ -70,7 +72,6 @@ let Labeling_screen: React.FC<{}> = ({}) => {
   let dispatch = useDispatch();
   let image_dimensions = useSelector(select_Image_Dimensions);
   let current_image_label = useSelector(select_current_label);
-
   let [initial_cords, set_initial_cords] = useState({x: 0, y: 0});
 
   return (
@@ -78,9 +79,6 @@ let Labeling_screen: React.FC<{}> = ({}) => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.safe_view}>
         <View
-          style={{
-            borderWidth: 2,
-          }}
           pointerEvents={'box-only'}
           onMoveShouldSetResponder={(e) => {
             set_initial_cords({

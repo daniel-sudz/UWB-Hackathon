@@ -28,7 +28,7 @@ export interface export_data {
       min_x: number;
       max_x: number;
       min_y: number;
-      may_x: number;
+      max_y: number;
       label: string;
     }[];
   };
@@ -166,6 +166,9 @@ export const select_All_Bbox_state = (state: RootState) =>
 
 export const select_current_label = (state: RootState) =>
   state.labeling.current_label;
+
+export const select_final_data = (state: RootState) =>
+  state.labeling.export_data;
 
 export const select_Image_to_Label = (state: RootState) => {
   if (

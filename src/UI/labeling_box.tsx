@@ -105,6 +105,7 @@ let Render_main_bboxes = () => {
   let current_bbox = useSelector(select_Current_Bbox_State);
   let all_boxes = useSelector(select_All_Bbox_state);
   let current_label = useSelector(select_current_label);
+  let current_state = useSelector(select_Current_Bbox_State);
 
   // This is the bbox that is currectly in action
   let current_labeling_box: JSX.Element[] | null = create_box_with_corners(
@@ -115,6 +116,10 @@ let Render_main_bboxes = () => {
     1 / 3,
     current_label,
   );
+
+  if (current_state.are_we_currently_labeling === false) {
+    current_labeling_box = null;
+  }
 
   // These are all the other boxes that have been created
 
