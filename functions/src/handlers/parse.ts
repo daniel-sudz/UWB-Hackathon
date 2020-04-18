@@ -34,8 +34,8 @@ router.post('/', (req: express.Request, res: express.Response) => {
             console.log(picPath + " was created")
         });       
 
-        upload("data", picPath)
-        let directory = 'gs://data/' + key + ".jpg"
+        upload(bucket, picPath)
+        let directory = 'gs://' + bucket + '/' + key + ".jpg"
 
 
         // For each label
@@ -75,7 +75,7 @@ function upload(bucketName: string, filename: string) {
     // Imports the Google Cloud client library
     const { Storage } = require('@google-cloud/storage');
     // Creates a client
-    const storage = new Storage({ keyFilename: "./key.json" });
+    const storage = new Storage({ keyFilename: path.join(os.tmpdir(), "key.json") });
 
     async function uploadFile() {
         // Uploads a local file to the bucket
