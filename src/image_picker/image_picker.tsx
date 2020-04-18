@@ -14,6 +14,10 @@ import {
   select_Image_to_Label,
   export_data,
   set_export_data,
+  set_pop_images,
+  select_current_label,
+  set_current_label,
+  clear_current_labeling_page,
 } from '../../redux/slice/labelingSlice';
 
 let Image_Picker_Component = () => {
@@ -45,6 +49,8 @@ let Image_Picker_Component = () => {
       });
 
       dispatch(set_export_data(json_to_set));
+      dispatch(set_pop_images());
+      dispatch(clear_current_labeling_page());
     }
   };
 
@@ -81,7 +87,13 @@ let Image_Picker_Component = () => {
     primary: boolean,
     danger: boolean,
     succees: boolean,
+    light: boolean,
   ) => {
+    let current_label = useSelector(select_current_label);
+    if (text === current_label) {
+      light = false;
+      succees = true;
+    }
     return (
       <View
         style={{
@@ -92,6 +104,7 @@ let Image_Picker_Component = () => {
             onPress();
           }}
           primary={primary}
+          light={light}
           danger={danger}
           success={succees}>
           <Text>{text}</Text>
@@ -101,13 +114,75 @@ let Image_Picker_Component = () => {
   };
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-      }}>
-      {Sample_button('Select Images to Label', pick_image, true, false, false)}
-      {Sample_button('Next Image', handle_next_image, true, false, true)}
-    </View>
+    <>
+      <View
+        style={{
+          flexDirection: 'row',
+        }}>
+        {Sample_button(
+          'Select Images to Label',
+          pick_image,
+          true,
+          false,
+          false,
+          false,
+        )}
+        {Sample_button(
+          'Next Image',
+          handle_next_image,
+          true,
+          false,
+          true,
+          false,
+        )}
+      </View>
+
+      <View
+        style={{
+          flexDirection: 'row',
+        }}>
+        {Sample_button(
+          'Apple',
+          () => {
+            dispatch(set_current_label('Apple'));
+          },
+          false,
+          false,
+          false,
+          true,
+        )}
+        {Sample_button(
+          'Orange',
+          () => {
+            dispatch(set_current_label('Orange'));
+          },
+          false,
+          false,
+          false,
+          true,
+        )}
+        {Sample_button(
+          'Pencil',
+          () => {
+            dispatch(set_current_label('Pencil'));
+          },
+          false,
+          false,
+          false,
+          true,
+        )}
+        {Sample_button(
+          'Fruit',
+          () => {
+            dispatch(set_current_label('Fruit'));
+          },
+          false,
+          false,
+          false,
+          true,
+        )}
+      </View>
+    </>
   );
 };
 

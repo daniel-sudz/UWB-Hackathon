@@ -81,6 +81,7 @@ export const labelingSlice = createSlice({
   reducers: {
     clear_current_labeling_page: (state) => {
       state.current_action = initialState.current_action;
+      state.all_bboxes = initialState.all_bboxes;
     },
 
     set_image_size: (state, action: PayloadAction<{x: number; y: number}>) => {
@@ -140,6 +141,8 @@ export const {
   set_avaliable_images,
   set_export_data,
   set_current_label,
+  set_pop_images,
+  clear_current_labeling_page,
 } = labelingSlice.actions;
 
 /*
