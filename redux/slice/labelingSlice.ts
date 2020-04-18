@@ -118,4 +118,7 @@ export const select_Image_Dimensions = (state: RootState) => ({
 export const select_Current_Bbox_State = (state: RootState) =>
   state.labeling.current_action;
 
+export const select_All_Bbox_state = (state: RootState) =>
+  state.labeling.all_bboxes;
+
 export default labelingSlice.reducer;

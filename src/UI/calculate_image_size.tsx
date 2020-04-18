@@ -17,16 +17,16 @@ let calculate_image_size = (image_width: number, image_height: number) => {
   // is greater than our allowed threshold, we set the image height to the max height.
 
   if (maxWidth * image_aspect > maxHeight) {
-    (display_width = maxHeight * (1 / image_aspect)),
-      (display_height = maxHeight);
+    display_width = maxHeight * (1 / image_aspect);
+    display_height = maxHeight;
   }
 
   // Else, setting width to max width will not cause a height overflow so we can safely do so
   else {
-    (display_width = maxWidth), (display_height = maxWidth * image_aspect);
+    display_width = maxWidth;
+    display_height = maxWidth * image_aspect;
   }
 
-  //
   return {
     display_width: display_width,
     display_height: display_height,
