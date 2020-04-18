@@ -44,7 +44,7 @@ With our app, all of this is taken care of. A user simply takes picture on their
 The data stored in the storage bucket has public read acesss avaliable so the user will be able to import the csv file for as long as the data remains in the cloud bucket. 
 
 ## Data Layer
-<img src="./redux1.png" width="913" height="350" />
+<img src="./redux1.png" width="100%"/>
 
 ### Rational 
 
