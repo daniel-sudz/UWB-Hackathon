@@ -58,21 +58,21 @@ function ParseUpload(req: express.Request, res: express.Response) {
                 element.max_x.toString(), element.min_y.toString(), element.max_x.toString(),
                 element.max_y.toString(), element.min_x.toString(), element.max_y.toString()])
         })
-
-        shuffle(data)
-
-        let count = 0;
-        data.forEach((entry) =>{
-            let option = ""
-            if (count < data.length / 80)
-                option = 'TRAIN'
-            else if (count < data.length / 90)
-                option = 'VALIDATE'
-            else
-                option = 'TEST'
-            entry.unshift(option)
-        })
     });
+
+    shuffle(data)
+
+    let count = 0;
+    data.forEach((entry) =>{
+        let option = ""
+        if (count < data.length / 80)
+            option = 'TRAIN'
+        else if (count < data.length / 90)
+            option = 'VALIDATE'
+        else
+            option = 'TEST'
+        entry.unshift(option)
+    })
 
     var csv = data.map(function (d) {
         return d.join();
