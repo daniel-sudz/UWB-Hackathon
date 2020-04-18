@@ -38,6 +38,7 @@ jobs:
         git_password: ${{secrets.git_password}}
         MATCH_PASSWORD: ${{secrets.MATCH_PASSWORD}}
         MATCH_GIT_BASIC_AUTHORIZATION: ${{secrets.MATCH_GIT_BASIC_AUTHORIZATION}}
+        FASTLANE_PASSWORD: ${{secrets.FASTLANE_PASSWORD}}
       run: |
         sudo chmod +x .github/workflows/install_mac.sh
         .github/workflows/install_mac.sh
@@ -47,3 +48,12 @@ jobs:
       run: | 
         sudo chmod +x .github/workflows/install_linux.sh
         .github/workflows/install_linux.sh
+
+      - name: Commit back version bump
+        run: |
+          git config --global user.name 'Daniel Sudzilouski'
+          git config --global user.email 'daniel-sudz@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git add .
+          git commit -am "Automated version bump"
+          git push

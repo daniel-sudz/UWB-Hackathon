@@ -26,6 +26,9 @@ pod install
 brew install fastlane
 brew upgrade fastlane
 bundle install
+
+cd .. && npm run build:ios && cd ios
+
 bundle exec fastlane keychain --verbose
 bundle exec fastlane beta --verbose
 #npx react-native run-ios
