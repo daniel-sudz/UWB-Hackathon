@@ -3,6 +3,9 @@ import fs = require('fs');
 import os = require('os');
 import path = require('path');
 import jKey from './keyFile';
+
+import {v4 as uuidv4 } from 'uuid'
+
 const router = express.Router()
 
 // Compile error > Runtime error
@@ -39,13 +42,15 @@ function ParseUpload(req: express.Request, res: express.Response) {
     let data: string[][] = [[]]
 
     allKeys.forEach((key) => {
-        let picPath = path.join(os.tmpdir(), key + ".jpg")
+        let randomName = key + "-" + uuidv4() + ".jpg"
+
+        let picPath = path.join(os.tmpdir(), randomName)
         
         fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, () => {
             upload(bucket, picPath)
         });
 
-        let directory = 'gs://' + bucket + '/' + key + ".jpg"
+        let directory = 'gs://' + bucket + '/' + randomName
 
 
         // For each label
@@ -67,15 +72,17 @@ function ParseUpload(req: express.Request, res: express.Response) {
         })
     });
 
+    let csvName = "train-" + uuidv4() + ".csv"
+
     var csv = data.map(function (d) {
         return d.join();
     }).join('\n');
 
-    fs.writeFile(path.join(os.tmpdir(), "train.csv"), csv, () =>{
-        upload(bucket, path.join(os.tmpdir(), "train.csv"))
+    fs.writeFile(path.join(os.tmpdir(), csvName), csv, () =>{
+        upload(bucket, path.join(os.tmpdir(), csvName))
     });
 
-    res.send('gs://' + bucket + '/train.csv')
+    res.send('gs://' + bucket + '/' + csvName)
 }
 
 function upload(bucketName: string, filename: string) {
