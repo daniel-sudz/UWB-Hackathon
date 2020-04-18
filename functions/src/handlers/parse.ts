@@ -4,7 +4,7 @@ import os = require('os');
 import path = require('path');
 import jKey from './keyFile';
 
-import {v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 const router = express.Router()
 
@@ -40,22 +40,20 @@ function ParseUpload(req: express.Request, res: express.Response) {
     const bucket = "coronatime-7b908.appspot.com"
 
     let data: string[][] = [[]]
-    
+
     console.log("Total Pictures: " + allKeys.length)
 
     let uuid = uuidv4()
-    
-    allKeys.forEach((key) => {
-        let randomName = + uuid + '/images/' + key  + ".jpg"
 
-        let picPath = path.join(os.tmpdir(), randomName)
-        
+    allKeys.forEach((key) => {
+        let picPath = path.join(os.tmpdir(), key)
+
         fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, () => {
-            console.log("Saved: " + randomName)
-            upload(bucket, picPath)
+            console.log("Saved: " + key)
+            upload(bucket, uuid, picPath)
         });
 
-        let directory = 'gs://' + bucket + '/' + randomName
+        let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
 
         // For each label
         jsonData[key].data.forEach((element) => {
@@ -69,16 +67,16 @@ function ParseUpload(req: express.Request, res: express.Response) {
         return d.join();
     }).join('\n');
 
-    let csvName = uuid + "/result.csv"
+    let csvName = "result.csv"
 
-    fs.writeFile(path.join(os.tmpdir(), csvName), csv, () =>{
-        upload(bucket, path.join(os.tmpdir(), csvName))
+    fs.writeFile(path.join(os.tmpdir(), csvName), csv, () => {
+        upload(bucket, uuid, path.join(os.tmpdir(), csvName))
     });
 
-    res.send('gs://' + bucket + '/' + csvName)
+    res.send('gs://' + bucket + '/' + uuid + '/' + csvName)
 }
 
-function upload(bucketName: string, filename: string) {
+function upload(bucketName: string, folder: string, filename: string) {
     // [START storage_upload_file]
     /**
      * TODO(developer): Uncomment the following lines before running the sample.
@@ -93,18 +91,21 @@ function upload(bucketName: string, filename: string) {
 
     async function uploadFile() {
         // Uploads a local file to the bucket
-        await storage.bucket(bucketName).upload(filename, {
-            // Support for HTTP requests made with `Accept-Encoding: gzip`
-            gzip: true,
-            // By setting the option `destination`, you can change the name of the
-            // object you are uploading to a bucket.
-            metadata: {
-                // Enable long-lived HTTP caching headers
-                // Use only if the contents of the file will never change
-                // (If the contents will change, use cacheControl: 'no-cache')
-                cacheControl: 'public, max-age=31536000',
-            },
-        });
+        await storage.bucket(bucketName).upload(
+            filename, {
+                destination: folder + '/' + filename,
+                // Support for HTTP requests made with `Accept-Encoding: gzip`
+                gzip: true,
+                // By setting the option `destination`, you can change the name of the
+                // object you are uploading to a bucket.
+                metadata: {
+                    // Enable long-lived HTTP caching headers
+                    // Use only if the contents of the file will never change
+                    // (If the contents will change, use cacheControl: 'no-cache')
+                    cacheControl: 'public, max-age=31536000',
+                },
+            }
+        );
 
         console.log(`${filename} uploaded to ${bucketName}.`);
     }
