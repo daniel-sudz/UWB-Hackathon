@@ -60,21 +60,6 @@ function ParseUpload(req: express.Request, res: express.Response) {
         })
     });
 
-    shuffle(data)
-
-    let count = 0;
-    data.forEach((entry) =>{
-        let option = ""
-        if (count < data.length / 80)
-            option = 'TRAIN'
-        else if (count < data.length / 90)
-            option = 'VALIDATE'
-        else
-            option = 'TEST'
-        entry.unshift(option)
-        count++
-    })
-
     var csv = data.map(function (d) {
         return d.join();
     }).join('\n');
@@ -121,17 +106,6 @@ function upload(bucketName: string, filename: string) {
 
     uploadFile().catch(console.error);
     // [END storage_upload_file]
-}
-
-function shuffle(a: string[][]) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
 }
 
 export default router
