@@ -40,13 +40,18 @@ function ParseUpload(req: express.Request, res: express.Response) {
     const bucket = "coronatime-7b908.appspot.com"
 
     let data: string[][] = [[]]
+    
+    console.log("Total Pictures: " + allKeys.length)
 
+    let uuid = uuidv4()
+    
     allKeys.forEach((key) => {
-        let randomName = key + "-" + uuidv4() + ".jpg"
+        let randomName = + uuid + '/images/' + key  + ".jpg"
 
         let picPath = path.join(os.tmpdir(), randomName)
         
         fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, () => {
+            console.log("Saved: " + randomName)
             upload(bucket, picPath)
         });
 
@@ -54,7 +59,7 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
         // For each label
         jsonData[key].data.forEach((element) => {
-            data.push([directory, element.label, element.min_x.toString(), element.min_y.toString(),
+            data.push(["UNASSIGNED", directory, element.label, element.min_x.toString(), element.min_y.toString(),
                 element.max_x.toString(), element.min_y.toString(), element.max_x.toString(),
                 element.max_y.toString(), element.min_x.toString(), element.max_y.toString()])
         })
@@ -64,7 +69,7 @@ function ParseUpload(req: express.Request, res: express.Response) {
         return d.join();
     }).join('\n');
 
-    let csvName = "train-" + uuidv4() + ".csv"
+    let csvName = uuid + "/result.csv"
 
     fs.writeFile(path.join(os.tmpdir(), csvName), csv, () =>{
         upload(bucket, path.join(os.tmpdir(), csvName))
