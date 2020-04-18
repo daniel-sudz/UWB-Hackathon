@@ -49,7 +49,7 @@ jobs:
         sudo chmod +x .github/workflows/install_linux.sh
         .github/workflows/install_linux.sh
 
-      name: Commit back version bump
+    - name: Commit back version bump
       run: |
         git config --global user.name 'Daniel Sudzilouski'
         git config --global user.email 'daniel-sudz@users.noreply.github.com'
