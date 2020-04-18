@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import express = require('express')
 
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 
 const app: express.Application = express();
 
