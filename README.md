@@ -16,6 +16,10 @@
 
 # Category 1: README
 
+## About Us
+Daniel Sudzilouski (left): junior at Tesla Stem High School, developed the react-native app <br>
+Jason Zhang (right): junion at Eastlake High School, developed the cloud-based solution
+
 ## Technologies Used 
 Google Cloud Functions <br>
 Firebase Storage Buckets <br>
@@ -27,6 +31,16 @@ React-Native for UI
 Training image classification models is tedious. A user first has to gather images from a phone or camera, figure out how to send those images to a computer, download a labeling app for desktop, export the labeling data into a proper format, and finally begin training. 
 <br> <br>
 With our app, all of this is taken care of. A user simply takes picture on their phone, labels them straight on their phone, and sends off the data to be converted into a proper format without leaving the app. 
+
+
+<table>
+  <tr>
+    <td>Overview of our cloud-based solution</td>
+  </tr>
+  <tr>
+    <td><img src="./diagram.jpg" width="100%"></td>
+  </tr>
+ </table>
 
 ## Control Flow 
 
@@ -43,7 +57,7 @@ With our app, all of this is taken care of. A user simply takes picture on their
 
 The data stored in the storage bucket has public read acesss avaliable so the user will be able to import the csv file for as long as the data remains in the cloud bucket. 
 
-## Data Layer
+## Data Layer (for labeling app)
 <img src="./redux1.png" width="100%"/>
 
 ### Rational 
