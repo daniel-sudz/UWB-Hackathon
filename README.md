@@ -44,7 +44,25 @@ Step 8: The user can drag and drop the csv file to their autoML console which wi
 The data stored in the storage bucket has public read acesss avaliable so the user will be able to import the csv file for as long as the data remains in the cloud bucket. 
 
 ## Data Layer
-<img src="./redux.png" width="820" height="203" />
+<img src="./redux1.png" width="913" height="350" />
+
+### Rational 
+
+To simply the making of the app, we employed redux state managment along with react hooks. 
+
+### Examples
+As a user drags his finger to draw a bounding box, the current action data field is changed which is reflected by the changing bounding box on the screen. 
+<br>
+<br>
+When the user finishes dragging his finger, his changes are pushed to the all_bbox data field 
+<br>
+<br>
+When a user navigates to a new image, the labeling data is stashed to export_data and a new imaged is poped from avaliable_images. 
+
+### Effect
+
+Employing redux state managments greatly reduces the number of nested components. Using redux hooks, each component can live as a function in its own file and can hook into redux state as its needed. With this model, code reuse and readability is improved.
+
 ## Issues encountered 
 
 # Category 2: User Experience Example
