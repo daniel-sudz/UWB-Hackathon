@@ -29,6 +29,7 @@ bundle install
 
 cd .. && npm run build:ios && cd ios
 
+bundle update --bundler
 bundle exec fastlane keychain --verbose
 bundle exec fastlane beta --verbose
 #npx react-native run-ios
