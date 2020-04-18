@@ -2,7 +2,7 @@ import express = require('express')
 import fs = require('fs');
 import os = require('os');
 import path = require('path');
-
+import jKey from './keyFile';
 const router = express.Router()
 
 // Compile error > Runtime error
@@ -22,19 +22,25 @@ interface reqBody {
 }
 
 router.post('/', (req: express.Request, res: express.Response) => {
+
+    let jKeyString = JSON.stringify(jKey);
+
+    fs.writeFileSync(path.join(os.tmpdir(), "key.json"), jKeyString);
+
+
     let jsonData = req.body as reqBody
     let allKeys = Object.keys(jsonData)
 
     const bucket = "coronatime-7b908.appspot.com"
 
-    let data: string[][] = [["set", "path", "label", "x_min", "y_min", "x_max", "y_min", "x_max", "y_max", "x_min", "y_max"]]
+    let data: string[][] = [[]]
 
     allKeys.forEach((key) => {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
 
         fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, function (err) {
             console.log(picPath + " was created")
-        });       
+        });
 
         upload(bucket, picPath)
         let directory = 'gs://' + bucket + '/' + key + ".jpg"
