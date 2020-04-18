@@ -68,15 +68,34 @@ Employing redux state managments greatly reduces the number of nested components
 
 ## App experience 
 
-### Splash screen
+### Splash screen / Labeling Page
 
-## Selecting an image 
+<table>
+  <tr>
+    <td>Page on loading of app</td>
+     <td>Page after selecting an image to label</td>
+  </tr>
+  <tr>
+    <td><img src="./splash1.png" width="100%"></td>
+    <td><img src="./splash2.png" width="100%"></td>
+  </tr>
+ </table>
+ 
+### Selecting images 
 
-## Labeling window 
 
-## Video example of drawing bounding boxes 
+<table>
+  <tr>
+    <td>Gif of a user importing images. Note that it might take a while to load because github only allows gifs which are not very optimized. File size is approx. 12 MB. </td>
+  </tr>
+  <tr>
+    <td><img src="./importing1.gif" width="50%"></td>
+  </tr>
+ </table>
 
-## Video example of posting data to API endpoint 
+### Video example of drawing bounding boxes 
+
+### Video example of posting data to API endpoint 
 
 ## API Enpoint
 
