@@ -10,13 +10,15 @@
 </p>
 <p align="center">
   <img src="./box.png" width="200" height="200" />
-   <img src="./personal.png" width="200" height="200" />
-    <img src="./jason.svg" width="200" height="200" />
 </p>
 
 # Category 1: README
 
 ## About Us
+<p align="center">
+  <img src="./personal.png" width="200" height="200" />
+  <img src="./jason.svg" width="200" height="200" />
+</p>
 Daniel Sudzilouski (left): junior at Tesla Stem High School, developed the react-native app <br>
 Jason Zhang (right): junion at Eastlake High School, developed the cloud-based solution
 
