@@ -25,6 +25,8 @@ router.post('/', (req: express.Request, res: express.Response) => {
     let jsonData = req.body as reqBody
     let allKeys = Object.keys(jsonData)
 
+    const bucket = "coronatime-7b908.appspot.com"
+
     let data: string[][] = [["set", "path", "label", "x_min", "y_min", "x_max", "y_min", "x_max", "y_max", "x_min", "y_max"]]
 
     allKeys.forEach((key) => {
