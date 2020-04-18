@@ -2,7 +2,7 @@ name: Firebase Cloud Function
 on:
   push:
     branches:
-      - master
+      - firebase
 
 jobs:
   build:
