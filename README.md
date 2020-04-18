@@ -30,16 +30,16 @@ With our app, all of this is taken care of. A user simply takes picture on their
 
 ## Control Flow 
 
-Step 1: A user downloads our app <br>
-Step 2: A user takes pictures from their phone <br>
-Step 3: A user imports images from our app <br>
-Step 4: A user draws bounding boxes through the app <br>
-Step 5: A user selects to export their labeled data <br>
-Step 6: The user data is send to a firebase cloud function <br>
-Step 7: The firebase cloud function forwards image data to firebase storage buckets<br>
-Step 7: The firebase cloud function assembles an auto-ML formatted CSV file with references to the bucket and data<br>
-Step 8: The firebase cloud function returns the csv file to the user <br>
-Step 8: The user can drag and drop the csv file to their autoML console which will begin traning :) <br>
+1) ✅ A user downloads our app <br>
+2) ✅ A user takes pictures from their phone <br>
+3) ✅ A user imports images into our app <br>
+4) ✅ A user draws bounding boxes through the app <br>
+5) ✅ A user selects to export their labeled data <br>
+6) ✅ The user data is send to a firebase cloud function <br>
+7) ✅ The firebase cloud function forwards image data to firebase storage buckets <br>
+8) ✅ The firebase cloud function assembles an auto-ML formatted CSV file with references to the bucket and data<br>
+9) ✅ The firebase cloud function returns the csv file to the user <br>
+10) ✅ The user can drag and drop the csv file to their autoML console which will begin traning <br>
 
 The data stored in the storage bucket has public read acesss avaliable so the user will be able to import the csv file for as long as the data remains in the cloud bucket. 
 
@@ -51,19 +51,18 @@ The data stored in the storage bucket has public read acesss avaliable so the us
 To simply the making of the app, we employed redux state managment along with react hooks. 
 
 ### Examples
-As a user drags his finger to draw a bounding box, the current action data field is changed which is reflected by the changing bounding box on the screen. 
-<br>
-<br>
-When the user finishes dragging his finger, his changes are pushed to the all_bbox data field 
-<br>
-<br>
-When a user navigates to a new image, the labeling data is stashed to export_data and a new imaged is poped from avaliable_images. 
+1) As a user drags his finger to draw a bounding box, the current action data field is changed which is reflected by the changing bounding box on the screen. 
+2) When the user finishes dragging his finger, his changes are pushed to the all_bbox data field 
+3) When a user navigates to a new image, the labeling data is stashed to export_data and a new imaged is poped from avaliable_images. 
 
 ### Effect
 
 Employing redux state managments greatly reduces the number of nested components. Using redux hooks, each component can live as a function in its own file and can hook into redux state as its needed. With this model, code reuse and readability is improved.
 
-## Issues encountered 
+## Issues encountered / Hope for the future 
+1) We wanted to make the experience fully automatic 🤖 but didn't time to figure out how to automate the begin-training part with Google AutoML. In the end we decided that this feature isn't actually needed because the app already has pretty low friction and we couldn't want to pay for someone elses data training. 
+2) For some reason the API crashes 💥when png images are uploaded instead of jpg images. We need to figure out what is up with the base64 to image converter library we are using. 
+3) We would like to add an email 📧 API so that a user would recieve an email with their generated CSV file upon posting to the server. We didn't have time to do this. Currently, the user just recieves the CSV file back in plain text that they can copy. 
 
 # Category 2: User Experience Example
 
@@ -133,5 +132,24 @@ The google storage bucket that the images were uploaded to is publicly read-only
 
 # Category 3: Implementation Details
 
-## Redux State Managment Control Flow Diagram 
+## Repository 
 
+Look around the various branches to find all the code that was written to make this user experience possible. 
+
+### Branch redux-refactor 
+
+This branch contains all the code used for the react-native labeling app. The following libraries were employed in the making of the app: react-native for UI, redux for state managment, react-native-image-crop-picker for picking images from gallery, and NativeBase so that the buttons do not look hiedeous. 
+
+Find the code at: 
+https://github.com/daniel-sudz/UWB-Hackathon/tree/redux-refactor
+
+## Branch firebase 
+
+This is the branch that contains all the code used for the cloud function and firebase storage buckets. 
+
+Find the code at: 
+https://github.com/daniel-sudz/UWB-Hackathon/tree/firebase
+
+## Branch Master 
+
+This is the branch for our documentation. We hope that you have enjoyed it and that all the images/videos have worked for you. 
