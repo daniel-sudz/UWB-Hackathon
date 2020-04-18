@@ -31,16 +31,6 @@ fastlane ios beta
 fastlane ios bump_version
 ```
 
-### ios beta_test
-```
-fastlane ios beta_test
-```
-
-### ios main
-```
-fastlane ios main
-```
-
 
 ----
 
