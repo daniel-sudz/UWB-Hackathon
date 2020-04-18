@@ -22,11 +22,14 @@ interface reqBody {
 }
 
 router.post('/', (req: express.Request, res: express.Response) => {
+    ParseUpload(req, res)
+});
+
+function ParseUpload(req: express.Request, res: express.Response) {
 
     let jKeyString = JSON.stringify(jKey);
 
     fs.writeFileSync(path.join(os.tmpdir(), "key.json"), jKeyString);
-
 
     let jsonData = req.body as reqBody
     let allKeys = Object.keys(jsonData)
@@ -37,12 +40,11 @@ router.post('/', (req: express.Request, res: express.Response) => {
 
     allKeys.forEach((key) => {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
-
-        fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, function (err) {
-            console.log(picPath + " was created")
+        
+        fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, () => {
+            upload(bucket, picPath)
         });
 
-        upload(bucket, picPath)
         let directory = 'gs://' + bucket + '/' + key + ".jpg"
 
 
@@ -70,7 +72,7 @@ router.post('/', (req: express.Request, res: express.Response) => {
     }).join('\n');
 
     res.send(csv)
-});
+}
 
 function upload(bucketName: string, filename: string) {
     // [START storage_upload_file]
