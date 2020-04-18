@@ -72,6 +72,7 @@ function ParseUpload(req: express.Request, res: express.Response) {
         else
             option = 'TEST'
         entry.unshift(option)
+        count++
     })
 
     var csv = data.map(function (d) {
