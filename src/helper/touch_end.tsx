@@ -15,6 +15,7 @@ let useTouch_end = (
     x: number;
     y: number;
   },
+  current_label: string,
 ) => {
   let min_x = Safe_area_x(Math.min(e.locationX, initial_cords.x), dimensions.w);
   let max_x = Safe_area_x(Math.max(e.locationX, initial_cords.x), dimensions.w);
@@ -28,7 +29,7 @@ let useTouch_end = (
       max_x: max_x,
       min_y: min_y,
       max_y: max_y,
-      bbox_label: 'null',
+      bbox_label: current_label,
     }),
   );
 };

@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux';
 import {
   select_Current_Bbox_State,
   select_All_Bbox_state,
+  select_current_label,
 } from '../../redux/slice/labelingSlice';
 
 // The text label that appears above a bbox
@@ -58,6 +59,7 @@ let create_box_with_corners = (
   left: number,
   top: number,
   scale_factor: number,
+  label: string,
 ) => {
   let main_box = create_labeling_box(width, height, left, top, 1);
   let top_left_box = create_labeling_box(
@@ -88,7 +90,7 @@ let create_box_with_corners = (
     top + (1 - scale_factor) * height,
     5,
   );
-  let text_label = create_a_text_label(top, left, 'thelabel');
+  let text_label = create_a_text_label(top, left, label);
   return [
     main_box,
     top_left_box,
@@ -102,17 +104,20 @@ let create_box_with_corners = (
 let Render_main_bboxes = () => {
   let current_bbox = useSelector(select_Current_Bbox_State);
   let all_boxes = useSelector(select_All_Bbox_state);
+  let current_label = useSelector(select_current_label);
 
   // This is the bbox that is currectly in action
-  let current_labeling_box = create_box_with_corners(
+  let current_labeling_box: JSX.Element[] | null = create_box_with_corners(
     Math.abs(current_bbox.final_x_cord - current_bbox.initial_x_cord),
     Math.abs(current_bbox.final_y_cord - current_bbox.initial_y_cord),
     Math.min(current_bbox.initial_x_cord, current_bbox.final_x_cord),
     Math.min(current_bbox.initial_y_cord, current_bbox.final_y_cord),
     1 / 3,
+    current_label,
   );
 
   // These are all the other boxes that have been created
+
   let all_box_state_to_boxes = all_boxes.map((box) => {
     return create_box_with_corners(
       box.max_x - box.min_x,
@@ -120,6 +125,7 @@ let Render_main_bboxes = () => {
       box.min_x,
       box.min_y,
       1 / 3,
+      box.bbox_label,
     );
   });
 

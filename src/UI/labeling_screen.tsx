@@ -13,6 +13,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {
   set_image_size,
   select_Image_Dimensions,
+  select_Image_to_Label,
+  select_current_label,
 } from '../../redux/slice/labelingSlice';
 
 import calculate_image_size from './calculate_image_size';
@@ -20,44 +22,54 @@ import Single_labeling_box from './labeling_box';
 import Touch_move from '../helper/touch_move';
 import Touch_start from '../helper/touch_start';
 import Touch_end from '../helper/touch_end';
+import Image_Picker_Component from '../image_picker/image_picker';
 
-let Labeling_image: React.FC<{uri: string}> = ({uri}) => {
+let Labeling_image: React.FC<{}> = ({}) => {
   const dispatch = useDispatch();
   const image_dimensions = useSelector(select_Image_Dimensions);
+  const current_image = useSelector(select_Image_to_Label);
 
   useEffect(() => {
-    Image.getSize(
-      uri,
-      (w, h) => {
-        const {display_width, display_height} = calculate_image_size(w, h);
-        dispatch(
-          set_image_size({
-            x: display_width,
-            y: display_height,
-          }),
-        );
-      },
-      (e) => {
-        throw e;
-      },
-    );
-  }, [image_dimensions.x, image_dimensions.y, uri, dispatch]);
+    if (current_image) {
+      Image.getSize(
+        current_image,
+        (w, h) => {
+          const {display_width, display_height} = calculate_image_size(w, h);
+          dispatch(
+            set_image_size({
+              x: display_width,
+              y: display_height,
+            }),
+          );
+        },
+        (e) => {
+          throw e;
+        },
+      );
+    }
+  }, [image_dimensions.x, image_dimensions.y, dispatch, current_image]);
 
-  return (
-    <Image
-      source={{uri: uri}}
-      style={{
-        resizeMode: 'contain',
-        width: image_dimensions.x,
-        height: image_dimensions.y,
-      }}
-    />
-  );
+  if (current_image === null) {
+    return null;
+  } else {
+    console.log(current_image);
+    return (
+      <Image
+        source={{uri: current_image}}
+        style={{
+          resizeMode: 'contain',
+          width: image_dimensions.x,
+          height: image_dimensions.y,
+        }}
+      />
+    );
+  }
 };
 
 let Labeling_screen: React.FC<{}> = ({}) => {
   let dispatch = useDispatch();
   let image_dimensions = useSelector(select_Image_Dimensions);
+  let current_image_label = useSelector(select_current_label);
 
   let [initial_cords, set_initial_cords] = useState({x: 0, y: 0});
 
@@ -94,13 +106,15 @@ let Labeling_screen: React.FC<{}> = ({}) => {
                 h: image_dimensions.y,
               },
               initial_cords,
+              current_image_label,
             );
             return true;
           }}
           key={0}>
-          <Labeling_image uri="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==" />
+          <Labeling_image />
           <Single_labeling_box />
         </View>
+        <Image_Picker_Component />
       </SafeAreaView>
     </View>
   );

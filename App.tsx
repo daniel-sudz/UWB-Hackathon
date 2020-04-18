@@ -7,11 +7,11 @@ import Labeling_screen from './src/UI/labeling_screen';
 const App = () => {
   return (
     <Provider store={store}>
-      <React.StrictMode>
-        <Labeling_screen />
-      </React.StrictMode>
+      <Labeling_screen />
     </Provider>
   );
 };
 
 export default App;
+
+// React Strict Mode does not work due to image crop library, needs to be adressed

@@ -5,7 +5,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../store/store';
 
 // All the information needed to describe a single bounding box
-interface single_bbox {
+export interface single_bbox {
   min_x: number;
   min_y: number;
   max_x: number;
@@ -18,6 +18,19 @@ interface single_bbox {
 interface labeling_button {
   [key: string]: {
     selected: boolean;
+  };
+}
+
+export interface export_data {
+  [key: string]: {
+    base64: string;
+    data: {
+      min_x: number;
+      max_x: number;
+      min_y: number;
+      may_x: number;
+      label: string;
+    }[];
   };
 }
 
@@ -34,6 +47,9 @@ interface labelingState {
     x: number;
     y: number;
   };
+  current_label: string;
+  export_data: export_data;
+  avaliable_images: string[];
   all_bboxes: single_bbox[];
   buttons: labeling_button;
   value: number;
@@ -47,10 +63,13 @@ const initialState: labelingState = {
     final_y_cord: 0,
     are_we_currently_labeling: false,
   },
+  current_label: 'default',
   current_image_size: {
     x: 0,
     y: 0,
   },
+  export_data: {},
+  avaliable_images: [],
   all_bboxes: [],
   buttons: {},
   value: 0,
@@ -73,6 +92,24 @@ export const labelingSlice = createSlice({
       state.all_bboxes.push(action.payload);
     },
 
+    set_export_data: (state, action: PayloadAction<export_data>) => {
+      let key = Object.keys(action.payload);
+      state.export_data[key[0]] = action.payload[key[0]];
+    },
+
+    set_current_label: (state, action: PayloadAction<string>) => {
+      state.current_label = action.payload;
+    },
+    //
+
+    set_pop_images: (state) => {
+      state.avaliable_images.pop();
+    },
+
+    //import base64 images
+    set_avaliable_images: (state, action: PayloadAction<string>) => {
+      state.avaliable_images.push(action.payload);
+    },
     // Current labeling action
     set_int_x: (state, action: PayloadAction<number>) => {
       state.current_action.initial_x_cord = action.payload;
@@ -100,6 +137,9 @@ export const {
   set_end_y,
   set_are_we_labeling,
   set_create_bbox,
+  set_avaliable_images,
+  set_export_data,
+  set_current_label,
 } = labelingSlice.actions;
 
 /*
@@ -120,5 +160,19 @@ export const select_Current_Bbox_State = (state: RootState) =>
 
 export const select_All_Bbox_state = (state: RootState) =>
   state.labeling.all_bboxes;
+
+export const select_current_label = (state: RootState) =>
+  state.labeling.current_label;
+
+export const select_Image_to_Label = (state: RootState) => {
+  if (
+    state.labeling.avaliable_images &&
+    state.labeling.avaliable_images.length
+  ) {
+    return state.labeling.avaliable_images.slice(-1)[0];
+  } else {
+    return null;
+  }
+};
 
 export default labelingSlice.reducer;
