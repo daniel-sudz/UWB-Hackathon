@@ -28,7 +28,7 @@ Training image classification models is tedious. A user first has to gather imag
 <br> <br>
 With our app, all of this is taken care of. A user simply takes picture on their phone, labels them straight on their phone, and sends off the data to be converted into a proper format without leaving the app. 
 
-## Implementation Details 
+## Control Flow 
 
 Step 1: A user downloads our app <br>
 Step 2: A user takes pictures from their phone <br>
@@ -43,8 +43,13 @@ Step 8: The user can drag and drop the csv file to their autoML console which wi
 
 The data stored in the storage bucket has public read acesss avaliable so the user will be able to import the csv file for as long as the data remains in the cloud bucket. 
 
+## Data Layer
+<img src="./redux.png" width="820" height="203" />
 ## Issues encountered 
 
 # Category 2: User Experience Example
 
 # Category 3: Implementation Details
+
+## Redux State Managment Control Flow Diagram 
+
