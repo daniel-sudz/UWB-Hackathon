@@ -71,7 +71,11 @@ function ParseUpload(req: express.Request, res: express.Response) {
         return d.join();
     }).join('\n');
 
-    res.send(csv)
+    fs.writeFile(path.join(os.tmpdir(), "train.csv"), csv, () =>{
+        upload(bucket, path.join(os.tmpdir(), "train.csv"))
+    });
+
+    res.send('gs://' + bucket + '/train.csv')
 }
 
 function upload(bucketName: string, filename: string) {
