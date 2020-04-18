@@ -52,31 +52,33 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
         let directory = 'gs://' + bucket + '/' + randomName
 
-
         // For each label
         jsonData[key].data.forEach((element) => {
-
-            let option = ""
-            let x = Math.random() * 10;
-
-            if (x < 1)
-                option = "VALIDATE"
-            else if (x < 2)
-                option = "TEST"
-            else
-                option = "TRAIN"
-
-            data.push([option, directory, element.label, element.min_x.toString(), element.min_y.toString(),
+            data.push([directory, element.label, element.min_x.toString(), element.min_y.toString(),
                 element.max_x.toString(), element.min_y.toString(), element.max_x.toString(),
                 element.max_y.toString(), element.min_x.toString(), element.max_y.toString()])
         })
-    });
 
-    let csvName = "train-" + uuidv4() + ".csv"
+        shuffle(data)
+
+        let count = 0;
+        data.forEach((entry) =>{
+            let option = ""
+            if (count < data.length / 80)
+                option = 'TRAIN'
+            else if (count < data.length / 90)
+                option = 'VALIDATE'
+            else
+                option = 'TEST'
+            entry.unshift(option)
+        })
+    });
 
     var csv = data.map(function (d) {
         return d.join();
     }).join('\n');
+
+    let csvName = "train-" + uuidv4() + ".csv"
 
     fs.writeFile(path.join(os.tmpdir(), csvName), csv, () =>{
         upload(bucket, path.join(os.tmpdir(), csvName))
@@ -118,6 +120,17 @@ function upload(bucketName: string, filename: string) {
 
     uploadFile().catch(console.error);
     // [END storage_upload_file]
+}
+
+function shuffle(a: string[][]) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }
 
 export default router
