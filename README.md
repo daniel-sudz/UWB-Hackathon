@@ -76,9 +76,9 @@ To simply the making of the app, we employed redux state managment along with re
 Employing redux state managments greatly reduces the number of nested components. Using redux hooks, each component can live as a function in its own file and can hook into redux state as its needed. With this model, code reuse and readability is improved.
 
 ## Issues encountered / Hope for the future 
-1) We wanted to make the experience fully automatic 🤖 but didn't time to figure out how to automate the begin-training part with Google AutoML. In the end we decided that this feature isn't actually needed because the app already has pretty low friction and we would't want to pay for someone elses data training. 
+1) We wanted to make the experience fully automatic 🤖 but didn't have time to figure out how to automate the begin-training part with Google AutoML. In the end we decided that this feature isn't actually needed because the app already has pretty low friction and we would't want to pay for someone else's data training. 
 2) For some reason the API crashes 💥when png images are uploaded instead of jpg images. We need to figure out what is up with the base64 to image converter library we are using. 
-3) We would like to add an email 📧 API so that a user would recieve an email with their generated CSV file upon posting to the server. We didn't have time to do this. Currently, the user just recieves the CSV file back in plain text that they can copy. 
+3) ~~We would like to add an email 📧 API so that a user would recieve an email with their generated CSV file upon posting to the server. We didn't have time to do this. Currently, the user just recieves the CSV file back in plain text that they can copy.~~ Upon choosing to export, the app opens up an email client with the csv link so that the user can easily email the link to themselves. This is no longer a problem.
 4) We had difficulty initially sending a request to our cloud function. It turns out that GET requests cannot carry a body message so we just needed to switch to POST requests.
 5) Sometimes uploading to the firebase storage buckets gets messed up. We are still working on increasing the consistency and speed. 
 
