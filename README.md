@@ -84,6 +84,18 @@ Employing redux state managments greatly reduces the number of nested components
 
 ## App experience 
 
+<h3 align="center">User experience on the app</h3>
+<p align="center">
+  <a href="https://img.shields.io/badge/Minimized-4KB-brightgreen.svg">
+    <img src="./demo_main.gif" width="50%" />
+  </a>
+</p>
+
+
+
+
+
+
 ### Splash screen / Labeling Page
 
 <table>
@@ -109,7 +121,7 @@ Employing redux state managments greatly reduces the number of nested components
   </tr>
  </table>
 
-### Video example of drawing bounding boxes 
+### Full client example 
 
 ### Video example of posting data to API endpoint 
 
@@ -155,7 +167,6 @@ The API responds to this request by uploading the provided base64 image to a sto
 ### API Response: CSV File
 
 ```
-set,path,label,x_min,y_min,x_max,y_min,x_max,y_max,x_min,y_max
 TEST,gs://coronatime-7b908.appspot.com/image1.jpg,dog,0.5,0.7,0.6,0.7,0.6,0.8,0.5,0.8
 TRAIN,gs://coronatime-7b908.appspot.com/image1.jpg,cat,0.9,0.8,1,0.8,1,0.4,0.9,0.4
 ```
