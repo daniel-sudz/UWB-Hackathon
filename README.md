@@ -114,10 +114,13 @@ Employing redux state managments greatly reduces the number of nested components
 
 <table>
   <tr>
-    <td>Gif of a user importing images. Note that it might take a while to load because github only allows gifs which are not very optimized. File size is approx. 12 MB. </td>
+    <td>A user importing images</td>
+    <td>A user labels a picture with oranges</td>
   </tr>
   <tr>
-    <td><img src="./importing1.gif" width="50%"></td>
+    <td><img src="./importing1.gif" width="100%"></td>
+    <td><img src="./boxes_example.gif" width="100%"></td>
+    
   </tr>
  </table>
 
