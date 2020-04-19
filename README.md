@@ -1,4 +1,7 @@
-## Data Format That I send to your server to get parsed for training
+# Firebase Cloud Function
+## API End Point
+https://us-central1-bboxlabeler.cloudfunctions.net/api
+## Data Format
 
 ```
 {
@@ -20,4 +23,4 @@
 ```
 
 ### Image Format 
-It should be in jpg but maybe not, I need to figure that out. I think firebase accepts a zip files, so you will need to convert the base 64 to a file and zip everything up in the way it wants.
+It should be in jpg
