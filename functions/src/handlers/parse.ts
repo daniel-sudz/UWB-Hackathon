@@ -48,10 +48,8 @@ function ParseUpload(req: express.Request, res: express.Response) {
     allKeys.forEach((key) => {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
 
-        fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, () => {
-            console.log("Saved: " + key)
-            upload(bucket, uuid, picPath, key + ".jpg")
-        });
+        fs.writeFileSync(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' });
+        upload(bucket, uuid, picPath, key + ".jpg")
 
         let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
 
@@ -69,9 +67,8 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
     let csvName = "result.csv"
 
-    fs.writeFile(path.join(os.tmpdir(), csvName), csv, () => {
-        upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName)
-    });
+    fs.writeFileSync(path.join(os.tmpdir(), csvName), csv);
+    upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName)
 
     res.send('gs://' + bucket + '/' + uuid + '/' + csvName)
 }
