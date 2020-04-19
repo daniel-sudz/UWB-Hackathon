@@ -14,6 +14,9 @@
 
 # Category 1: README - Check out the **redux-refactor** and **firebase** branch for implementations
 
+## Quickstart 
+Watch the video at https://youtu.be/zO1p4cPg_yk for client experience and https://www.youtube.com/watch?v=SpN6xKvSgWE for importing experience. Watching these two videos should take 2 minutes total and will greatly increase your comprehension while reading this readme. 
+
 ## License
 
 MIT for all branches. See the license file in this directory. 
