@@ -39,20 +39,18 @@ async function ParseUpload(req: express.Request, res: express.Response) {
 
     const bucket = "coronatime-7b908.appspot.com"
 
-    let data: string[][] = [[]]
-
-    data.pop()
+    let data: string[][] = []
 
     console.log("Total Pictures: " + allKeys.length)
 
     let uuid = uuidv4()
 
-    let promises : Promise<void>[] = []
+    let promises: Promise<void>[] = []
 
     allKeys.forEach(async (key) => {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
 
-        fs.writeFileSync(picPath, jsonData[key].base64.replace(/^data:image\/jpg;base64,/,""), { encoding: 'base64' });
+        fs.writeFileSync(picPath, jsonData[key].base64.replace(/^data:image\/jpg;base64,/, ""), { encoding: 'base64' });
         promises.push(upload(bucket, uuid, picPath, key + ".jpg"))
 
         let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
@@ -61,10 +59,10 @@ async function ParseUpload(req: express.Request, res: express.Response) {
         jsonData[key].data.forEach((element) => {
             data.push(["UNASSIGNED", directory, element.label, String(element.min_x.toPrecision(3)), String(element.min_y.toPrecision(3)),
                 String(element.max_x.toPrecision(3)), String(element.min_y.toPrecision(3)), String(element.max_x.toPrecision(3)),
-                String(element.max_y.toPrecision(3)),String(element.min_x.toPrecision(3)), String(element.max_y.toPrecision(3))])
+                String(element.max_y.toPrecision(3)), String(element.min_x.toPrecision(3)), String(element.max_y.toPrecision(3))])
         })
     });
-//String(parseFloat(element.min_x).toPrecision(3))
+    //String(parseFloat(element.min_x).toPrecision(3))
     let csv = data.map(function (d) {
         return d.join();
     }).join('\n');
@@ -80,7 +78,7 @@ async function ParseUpload(req: express.Request, res: express.Response) {
     res.send('gs://' + bucket + '/' + uuid + '/' + csvName)
 }
 
-async function upload(bucketName: string, folder: string, filelocation: string, filename: string) : Promise<void> {
+async function upload(bucketName: string, folder: string, filelocation: string, filename: string): Promise<void> {
     // [START storage_upload_file]
     /**
      * TODO(developer): Uncomment the following lines before running the sample.
@@ -97,18 +95,18 @@ async function upload(bucketName: string, folder: string, filelocation: string, 
         // Uploads a local file to the bucket
         await storage.bucket(bucketName).upload(
             filelocation, {
-                destination: folder + '/' + filename,
-                // Support for HTTP requests made with `Accept-Encoding: gzip`
-                gzip: true,
-                // By setting the option `destination`, you can change the name of the
-                // object you are uploading to a bucket.
-                metadata: {
-                    // Enable long-lived HTTP caching headers
-                    // Use only if the contents of the file will never change
-                    // (If the contents will change, use cacheControl: 'no-cache')
-                    cacheControl: 'public, max-age=31536000',
-                },
-            }
+            destination: folder + '/' + filename,
+            // Support for HTTP requests made with `Accept-Encoding: gzip`
+            gzip: true,
+            // By setting the option `destination`, you can change the name of the
+            // object you are uploading to a bucket.
+            metadata: {
+                // Enable long-lived HTTP caching headers
+                // Use only if the contents of the file will never change
+                // (If the contents will change, use cacheControl: 'no-cache')
+                cacheControl: 'public, max-age=31536000',
+            },
+        }
         );
 
         console.log(`${filename} uploaded to ${bucketName}.`);
