@@ -57,9 +57,9 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
         // For each label
         jsonData[key].data.forEach((element) => {
-            data.push(["UNASSIGNED", directory, element.label, String(parseFloat(element.min_x).toPrecision(3)), String(parseFloat(element.min_y).toPrecision(3)),
-                String(parseFloat(element.max_x).toPrecision(3)), String(parseFloat(element.min_y).toPrecision(3)), String(parseFloat(element.max_x).toPrecision(3)),
-                String(parseFloat(element.max_y).toPrecision(3)),String(parseFloat(element.min_x).toPrecision(3)), String(parseFloat(element.max_y).toPrecision(3))])
+            data.push(["UNASSIGNED", directory, element.label, String(element.min_x.toPrecision(3)), String(element.min_y.toPrecision(3)),
+                String(element.max_x.toPrecision(3)), String(element.min_y.toPrecision(3)), String(element.max_x.toPrecision(3)),
+                String(element.max_y.toPrecision(3)),String(element.min_x.toPrecision(3)), String(element.max_y.toPrecision(3))])
         })
     });
 //String(parseFloat(element.min_x).toPrecision(3))
