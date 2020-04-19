@@ -85,6 +85,7 @@ Employing redux state managments greatly reduces the number of nested components
 3) ~~We would like to add an email 📧 API so that a user would recieve an email with their generated CSV file upon posting to the server. We didn't have time to do this. Currently, the user just recieves the CSV file back in plain text that they can copy.~~ Upon choosing to export, the app opens up an email client with the csv link so that the user can easily email the link to themselves. This is no longer a problem.
 4) We had difficulty initially sending a request to our cloud function. It turns out that GET requests cannot carry a body message so we just needed to switch to POST requests.
 5) Sometimes uploading to the firebase storage buckets gets messed up. We are still working on increasing the consistency and speed. 
+6) The generated csv file contains a blank line at the top which causes the Gcloud autoML parser to crash. Working on a fix.
 
 # Category 2: User Experience Example
 
