@@ -51,7 +51,7 @@ async function ParseUpload(req: express.Request, res: express.Response) {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
 
         fs.writeFileSync(picPath, jsonData[key].base64.substring(23), { encoding: 'base64' });
-        promises.push(upload(bucket, uuid, picPath, key + ".jpg"))
+        promises.push(upload(bucket, uuid, picPath, key + ".jpg", "image/jpeg"))
 
         let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
 
@@ -70,15 +70,25 @@ async function ParseUpload(req: express.Request, res: express.Response) {
 
     let csvName = "result.csv"
 
-    fs.writeFileSync(path.join(os.tmpdir(), csvName), csv);
-    promises.push(upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName))
+    fs.writeFileSync(path.join(os.tmpdir(), csvName), csv, 
+    {
+        encoding: "ASCII"
+    });
+    promises.push(upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName,'text/csv'))
 
-    await Promise.all(promises)
+    try
+    {
+        await Promise.all(promises)
+    }
+    catch(e)
+    {
+        console.log(e)
+    }
 
     res.send('gs://' + bucket + '/' + uuid + '/' + csvName)
 }
 
-async function upload(bucketName: string, folder: string, filelocation: string, filename: string): Promise<void> {
+async function upload(bucketName: string, folder: string, filelocation: string, filename: string, ct: string): Promise<void> {
     // [START storage_upload_file]
     /**
      * TODO(developer): Uncomment the following lines before running the sample.
@@ -97,10 +107,10 @@ async function upload(bucketName: string, folder: string, filelocation: string, 
             filelocation, {
             destination: folder + '/' + filename,
             // Support for HTTP requests made with `Accept-Encoding: gzip`
-            gzip: true,
             // By setting the option `destination`, you can change the name of the
             // object you are uploading to a bucket.
             metadata: {
+                contentType: ct,
                 // Enable long-lived HTTP caching headers
                 // Use only if the contents of the file will never change
                 // (If the contents will change, use cacheControl: 'no-cache')
