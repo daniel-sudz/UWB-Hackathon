@@ -24,11 +24,11 @@ interface reqBody {
     }
 }
 
-router.post('/', (req: express.Request, res: express.Response) => {
-    ParseUpload(req, res)
+router.post('/', async (req: express.Request, res: express.Response) => {
+    await ParseUpload(req, res)
 });
 
-function ParseUpload(req: express.Request, res: express.Response) {
+async function ParseUpload(req: express.Request, res: express.Response) {
 
     let jKeyString = JSON.stringify(jKey);
 
@@ -47,11 +47,13 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
     let uuid = uuidv4()
 
-    allKeys.forEach((key) => {
+    let promises : Promise<void>[] = []
+
+    allKeys.forEach(async (key) => {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
 
         fs.writeFileSync(picPath, jsonData[key].base64.replace(/^data:image\/jpg;base64,/,""), { encoding: 'base64' });
-        upload(bucket, uuid, picPath, key + ".jpg")
+        promises.push(upload(bucket, uuid, picPath, key + ".jpg"))
 
         let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
 
@@ -71,12 +73,14 @@ function ParseUpload(req: express.Request, res: express.Response) {
     let csvName = "result.csv"
 
     fs.writeFileSync(path.join(os.tmpdir(), csvName), csv);
-    upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName)
+    promises.push(upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName))
+
+    await Promise.all(promises)
 
     res.send('gs://' + bucket + '/' + uuid + '/' + csvName)
 }
 
-function upload(bucketName: string, folder: string, filelocation: string, filename: string) {
+async function upload(bucketName: string, folder: string, filelocation: string, filename: string) : Promise<void> {
     // [START storage_upload_file]
     /**
      * TODO(developer): Uncomment the following lines before running the sample.
@@ -110,7 +114,7 @@ function upload(bucketName: string, folder: string, filelocation: string, filena
         console.log(`${filename} uploaded to ${bucketName}.`);
     }
 
-    uploadFile().catch(console.error);
+    return uploadFile().catch(console.error);
     // [END storage_upload_file]
 }
 
