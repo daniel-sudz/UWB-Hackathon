@@ -173,11 +173,10 @@ The API responds to this request by uploading the provided base64 image to a sto
 TEST,gs://coronatime-7b908.appspot.com/image1.jpg,dog,0.5,0.7,0.6,0.7,0.6,0.8,0.5,0.8
 TRAIN,gs://coronatime-7b908.appspot.com/image1.jpg,cat,0.9,0.8,1,0.8,1,0.4,0.9,0.4
 ```
+This CSV file is a valid Google AutoML metafile. ~~The user would see a popup in their app with the ability to copy the CSV file for their own safe keeping. In the future, we would probably ask the user to enter an email, so the CSV file could be emailed to them for the sake of convenience.~~ Adressed above. The app now opens an email client with a link to the csv file so that they can easily email it to themselves and import the csv file to Google AutoML if they want to begin training.
 
-If this first line is removed, this CSV file is a valid Google AutoML metafile. The user would see a popup in their app with the ability to copy the CSV file for their own safe keeping. In the future, we would probably ask the user to enter an email, so the CSV file could be emailed to them for the sake of convenience. 
 
-
-The google storage bucket that the images were uploaded to is publicly read-only. This means that the user would be able to upload the returned CSV file to either Gcloud AutoML or Firebase MLkit to begin training their model. 
+The google storage bucket that the images/csv file were uploaded to is publicly read-only. This means that the user would be able to upload the returned CSV file to either Gcloud AutoML or Firebase MLkit to begin training their model. 
 
 # Category 3: Implementation Details
 
