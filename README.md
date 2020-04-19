@@ -12,7 +12,7 @@
   <img src="./box.png" width="200" height="200" />
 </p>
 
-# Category 1: README
+# Category 1: README - Check out the **redux-refactor** and **firebase** branch for implementations
 
 ## License
 
@@ -206,6 +206,13 @@ Firebase Functions
 Successful Post Request
 <img src="./request.png" width="100%">
 
+Cloud Storage Bucket Layout (using uuid to avoid collision)
+<table>
+  <tr>
+    <td><img src="./bucket.png" width="100%"></td>
+    <td><img src="./bucket2.png" width="100%"></td>
+  </tr>
+</table>
 
 Find the code at: 
 https://github.com/daniel-sudz/UWB-Hackathon/tree/firebase
