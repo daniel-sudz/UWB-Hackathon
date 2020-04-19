@@ -46,8 +46,9 @@ jobs:
     - if: matrix.os == 'ubuntu-latest'
       name: We are in linux
       run: | 
-        sudo chmod +x .github/workflows/install_linux.sh
-        .github/workflows/install_linux.sh
+          echo android builds have been currently turned off
+        # sudo chmod +x .github/workflows/install_linux.sh
+        # .github/workflows/install_linux.sh
 
     - name: Commit back version bump
       run: |
