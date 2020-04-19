@@ -21,6 +21,7 @@ https://us-central1-bboxlabeler.cloudfunctions.net/api
   image2: etc.. 
 }
 ```
+[Test File](https://github.com/daniel-sudz/UWB-Hackathon/blob/firebase/test.json)
 
 ### Image Format 
 It should be in jpg
