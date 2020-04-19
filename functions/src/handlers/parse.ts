@@ -50,7 +50,7 @@ function ParseUpload(req: express.Request, res: express.Response) {
     allKeys.forEach((key) => {
         let picPath = path.join(os.tmpdir(), key + ".jpg")
 
-        fs.writeFileSync(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' });
+        fs.writeFileSync(picPath, jsonData[key].base64.replace(/^data:image\/jpg;base64,/,""), { encoding: 'base64' });
         upload(bucket, uuid, picPath, key + ".jpg")
 
         let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
