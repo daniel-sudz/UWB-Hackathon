@@ -41,6 +41,8 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
     let data: string[][] = [[]]
 
+    data.pop()
+
     console.log("Total Pictures: " + allKeys.length)
 
     let uuid = uuidv4()
@@ -61,9 +63,10 @@ function ParseUpload(req: express.Request, res: express.Response) {
         })
     });
 
-    var csv = data.map(function (d) {
+    let csv = data.map(function (d) {
         return d.join();
     }).join('\n');
+
 
     let csvName = "result.csv"
 
