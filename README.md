@@ -175,17 +175,13 @@ The API responds to this request by uploading the provided base64 image to a sto
 
 ### API Response: Link to CSV File
 ```
-gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/result.csv
+gs://coronatime-7b908.appspot.com/7e283d64-c87b-49dc-9023-9205c6833a32/result.csv
 ```
 
 result.csv
 ```
-UNASSIGNED,gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/image1.jpg,a,0.200,0.100,0.400,0.100,0.400,0.600,0.200,0.600
-UNASSIGNED,gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/image1.jpg,b,0.200,0.100,0.400,0.100,0.400,0.600,0.200,0.600
-UNASSIGNED,gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/image2.jpg,a,0.200,0.100,0.400,0.100,0.400,0.600,0.200,0.600
-UNASSIGNED,gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/image2.jpg,b,0.200,0.100,0.400,0.100,0.400,0.600,0.200,0.600
-UNASSIGNED,gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/image3.jpg,c,0.200,0.100,0.400,0.100,0.400,0.600,0.200,0.600
-UNASSIGNED,gs://coronatime-7b908.appspot.com/b56d3991-3680-4ee5-a65f-0a9b5c0e7758/image3.jpg,d,0.200,0.100,0.400,0.100,0.400,0.600,0.200,0.600
+UNASSIGNED,gs://coronatime-7b908.appspot.com/7e283d64-c87b-49dc-9023-9205c6833a32/image1.jpg,dog,0.500,0.700,0.600,0.700,0.600,0.800,0.500,0.800
+UNASSIGNED,gs://coronatime-7b908.appspot.com/7e283d64-c87b-49dc-9023-9205c6833a32/image1.jpg,cat,0.900,0.800,1.00,0.800,1.00,0.400,0.900,0.400
 ```
 
 If this first line is removed, this CSV file is a valid Google AutoML metafile. The user would see a popup in their app with the ability to copy the CSV file for their own safe keeping. In the future, we would probably ask the user to enter an email, so the CSV file could be emailed to them for the sake of convenience. 
