@@ -28,6 +28,10 @@ router.post('/', async (req: express.Request, res: express.Response) => {
     await ParseUpload(req, res)
 });
 
+router.get('/', (req: express.Request, res: express.Response) => {
+    res.send("<a href='https://github.com/daniel-sudz/UWB-Hackathon'>Check Out Repo for More Details</a>")
+});
+
 async function ParseUpload(req: express.Request, res: express.Response) {
 
     let jKeyString = JSON.stringify(jKey);
