@@ -20,7 +20,7 @@
   <img src="./jason.svg" width="200" height="200" />
 </p>
 Daniel Sudzilouski (left): junior at Tesla Stem High School, developed the react-native app <br>
-Jason Zhang (right): junion at Eastlake High School, developed the cloud-based solution
+Jason Zhang (right): junior at Eastlake High School, developed the cloud-based solution
 
 ## Technologies Used 
 Google Cloud Functions <br>
