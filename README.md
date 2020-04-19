@@ -1,7 +1,7 @@
 # Firebase Cloud Function
 ## API End Point
 https://us-central1-bboxlabeler.cloudfunctions.net/api
-## Data Format
+## Data Format (Post Request Body)
 
 ```
 {
