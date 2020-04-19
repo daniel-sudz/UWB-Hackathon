@@ -57,12 +57,12 @@ function ParseUpload(req: express.Request, res: express.Response) {
 
         // For each label
         jsonData[key].data.forEach((element) => {
-            data.push(["UNASSIGNED", directory, element.label, element.min_x.toString(), element.min_y.toString(),
-                element.max_x.toString(), element.min_y.toString(), element.max_x.toString(),
-                element.max_y.toString(), element.min_x.toString(), element.max_y.toString()])
+            data.push(["UNASSIGNED", directory, element.label, String(parseFloat(element.min_x).toPrecision(3)), String(parseFloat(element.min_y).toPrecision(3)),
+                String(parseFloat(element.max_x).toPrecision(3)), String(parseFloat(element.min_y).toPrecision(3)), String(parseFloat(element.max_x).toPrecision(3)),
+                String(parseFloat(element.max_y).toPrecision(3)),String(parseFloat(element.min_x).toPrecision(3)), String(parseFloat(element.max_y).toPrecision(3))])
         })
     });
-
+//String(parseFloat(element.min_x).toPrecision(3))
     let csv = data.map(function (d) {
         return d.join();
     }).join('\n');
