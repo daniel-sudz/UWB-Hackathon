@@ -46,11 +46,11 @@ function ParseUpload(req: express.Request, res: express.Response) {
     let uuid = uuidv4()
 
     allKeys.forEach((key) => {
-        let picPath = path.join(os.tmpdir(), key)
+        let picPath = path.join(os.tmpdir(), key + ".jpg")
 
         fs.writeFile(picPath, jsonData[key].base64.split(';base64,').pop(), { encoding: 'base64' }, () => {
             console.log("Saved: " + key)
-            upload(bucket, uuid, picPath)
+            upload(bucket, uuid, picPath, key + ".jpg")
         });
 
         let directory = 'gs://' + bucket + '/' + uuid + '/' + key + '.jpg'
@@ -70,13 +70,13 @@ function ParseUpload(req: express.Request, res: express.Response) {
     let csvName = "result.csv"
 
     fs.writeFile(path.join(os.tmpdir(), csvName), csv, () => {
-        upload(bucket, uuid, path.join(os.tmpdir(), csvName))
+        upload(bucket, uuid, path.join(os.tmpdir(), csvName), csvName)
     });
 
     res.send('gs://' + bucket + '/' + uuid + '/' + csvName)
 }
 
-function upload(bucketName: string, folder: string, filename: string) {
+function upload(bucketName: string, folder: string, filelocation: string, filename: string) {
     // [START storage_upload_file]
     /**
      * TODO(developer): Uncomment the following lines before running the sample.
@@ -92,7 +92,7 @@ function upload(bucketName: string, folder: string, filename: string) {
     async function uploadFile() {
         // Uploads a local file to the bucket
         await storage.bucket(bucketName).upload(
-            filename, {
+            filelocation, {
                 destination: folder + '/' + filename,
                 // Support for HTTP requests made with `Accept-Encoding: gzip`
                 gzip: true,
