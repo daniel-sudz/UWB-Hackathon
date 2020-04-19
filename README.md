@@ -14,6 +14,10 @@
 
 # Category 1: README
 
+## License
+
+MIT for all branches. See the license file in this directory. 
+
 ## About Us
 <p align="center">
   <img src="./personal.png" width="200" height="200" />
